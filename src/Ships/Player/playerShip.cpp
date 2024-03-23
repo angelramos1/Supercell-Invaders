@@ -42,7 +42,15 @@ void Player::draw() {
 
 void Player::update() {
     processPressedKeys();  // Process the pressed keys and calculate orientation change
-
+    
+     if (keyMap[OF_KEY_SHIFT]) {
+        isSprinting = true;
+        maxSpeed = 10;  // Adjust sprinting speed as needed
+    } else {
+        isSprinting = false;
+        maxSpeed = 5;   // Restore original speed when SHIFT key is released
+    }
+    
     velocity.limit(maxSpeed); // Limit the velocity to the maximum speed
             
     pos += velocity; // Update position based on velocity

@@ -12,7 +12,7 @@ class Player{
         ofImage shipSprite;                 // Sprite for the ship   
 
         int score;                          // Score of the player
-
+        int lives = 3;
     // === Attributes related to movement ===
         float maxSpeed = 5;         // Maximum speed of the player
         float speed;                // Current speed of the player
@@ -77,5 +77,12 @@ class Player{
         void processPressedKeys();          //Function that will process if the value of the keys inside the Map are being pressed 
         void removePressedKey(int key);      // Function to remove a pressed key from the keyMap 
         void movement(char keyPressed);     // Function that will handle the movement for the ship
+     //Phase 1 methods:
+        int getLives() { return lives; }
+        void setLives(int numLives) { lives = numLives; }
+        void loseLife() { lives--; }
+        void gainLife() { lives++; } 
+        
+        bool isSprinting;
 
 };

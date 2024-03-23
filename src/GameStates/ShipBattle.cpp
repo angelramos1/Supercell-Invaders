@@ -47,10 +47,16 @@ void ShipBattle::update() {
         updateBullets();
     }
 
-    // State switching logic for when the player dies
-    if (this->player->health <= 0) {
-        
-        this->setNextState("GameOverState");
+   
+    checkHP();
+}
+void ShipBattle::checkHP() {
+    if (player->health <= 0) {
+        if (player->getLives() > 0) {
+            player->loseLife();
+            player->health = 100; // Reset player health
+        } else {
+           this->setNextState("GameOverState");
         SoundManager::stopSong("battle");
         if(EnemyManager::getSpawningBossType() != ""){
             SoundManager::stopSong(EnemyManager::getSpawningBossType());
@@ -62,8 +68,18 @@ void ShipBattle::update() {
                 scoreFile.close();
             }
             this->setFinished(true);
-            EnemyManager::cleanUp();
     }
+}
+}
+void ShipBattle::drawLivesIndicator() const {
+    // Set font color
+    ofSetColor(ofColor::white);
+
+    // Draw image
+    player->getSprite().draw(10, ofGetHeight() - 100, 50, 50);
+
+    // Draw remaining lives next to the image
+    font.drawString("Lives: " + to_string(player->getLives()), 70, ofGetHeight() - 70);
 }
 
 //====== Draw Method ====== 
@@ -100,6 +116,7 @@ void ShipBattle::draw() {
         ofDrawRectangle(ofGetWidth() - 150, 30, 50, 50);
         ofFill();
     
+    drawLivesIndicator();
 }
 
 // ====================================
