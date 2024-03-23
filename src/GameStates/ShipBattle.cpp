@@ -62,6 +62,7 @@ void ShipBattle::update() {
                 scoreFile.close();
             }
             this->setFinished(true);
+            EnemyManager::cleanUp();
     }
 }
 

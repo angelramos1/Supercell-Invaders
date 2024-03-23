@@ -44,12 +44,14 @@ void ofApp::update(){
     if(currentState->hasFinished()){
         if(currentState->getNextState() == "IntroState") {
             SoundManager::playSong("intro", true);
-            currentState = intro;    
+            currentState = intro;   
+            intro = new IntroState(); 
         }
         
         else if(currentState->getNextState() == "BattleState"){
             SoundManager::playSong("battle", true);
             currentState = battle;
+            battle = new ShipBattle();
         }
 
         else if(currentState->getNextState() == "GameOverState") {
