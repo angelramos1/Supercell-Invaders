@@ -51,7 +51,7 @@ void ShipBattle::update() {
     checkHP();
 }
 void ShipBattle::checkHP() {
-    if (player->health <= 0) {
+    if (this->player->health <= 0) {
         if (player->getLives() > 0) {
             player->loseLife();
             player->health = 100; // Reset player health
@@ -68,7 +68,9 @@ void ShipBattle::checkHP() {
                 scoreFile.close();
             }
             this->setFinished(true);
+            EnemyManager::cleanUp();
     }
+    
 }
 }
 void ShipBattle::drawLivesIndicator() const {
