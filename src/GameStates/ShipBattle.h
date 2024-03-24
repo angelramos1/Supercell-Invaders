@@ -4,6 +4,7 @@
 #include "enemy.h"
 #include "EnemyCruiser.h"
 #include "EnemyVanguard.h"
+#include "NewEnemy.h"
 #include "ORT.h"
 #include "UFO.h"
 #include "playerShip.h"
