@@ -6,6 +6,7 @@
     vector<unique_ptr<Boss>> EnemyManager::bossList;
     bool EnemyManager::bossIsSpawning = false;
     bool EnemyManager::bossIsActive = false;
+    bool EnemyManager::staticBossDead = false;
 
     bool EnemyManager::ufoSeen = false;
     bool EnemyManager::ortSeen = false;
@@ -55,9 +56,20 @@ void EnemyManager::updateEnemies(Player* player){
     // Check and handle collisions
     manageCollisions(player);
 
+
     // Remove enemies that have been marked for deletion
     removeEnemies();
 
+    //Changes the Ship Sprite when StaticBoss is dead and doubles the bullets damage(10 to 20) also changes color
+   if (EnemyManager::staticSeen && EnemyManager::staticBossDead) {
+        player->newShipUpdate("CompressedImages/secondShip.png");
+
+        for(auto& bullet : player->bullets){
+        bullet.setDamage(20);
+        bullet.setColors(ofColor::red,ofColor::red);
+
+    }
+   }
 
 }
 
@@ -68,7 +80,7 @@ void EnemyManager::manageCollisions(Player* player) {
     for (auto& enemy : enemyList) {
             enemy->showHitboxes = toggleHitBoxes;
 
-        for (auto& bullet : player->bullets) {
+        for (auto& bullet : player->bullets) { 
             if (!bullet.bulletIsOutOfBounds() && enemy->getHitBox()->isHit(bullet)) {
                 player->health = min(player->health + 3.0, 100.0); // Reward the player by healing them
 
@@ -315,9 +327,10 @@ void EnemyManager::spawnBoss(const string& bossType) {
 
 void EnemyManager::bossHasDied() {
     bossIsActive = false;
+    staticBossDead = true;
     bossIsSpawning = false;
     whichBoss = "";
-}
+ }
 
 int EnemyManager::whichSpawnInterval(int playerScore) {
     // Simplified example, adjust intervals as needed

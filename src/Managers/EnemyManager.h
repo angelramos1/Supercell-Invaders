@@ -49,6 +49,8 @@ class EnemyManager {
         static bool ufoSeen;
         static bool ortSeen;
         static bool staticSeen;
+        static bool staticBossDead;
+        
 
 
     public:

@@ -28,6 +28,7 @@ class Player{
     // === Attributes related to rotation ===
         float rotationSpeed = 2.5;         // Speed of rotation
 
+    string newShip;
 
     public: 
 
@@ -85,4 +86,8 @@ class Player{
         
         bool isSprinting;
 
+        void newShipUpdate( const string& path){
+            newShip = path; 
+            shipSprite.load(newShip);
+        }  
 };

@@ -38,4 +38,7 @@ class Projectiles {
         void draw();                                    // Draws the projectile on the screen
         void markForDeletion();                         // Marks the projectile for deletion
         bool bulletIsOutOfBounds();                     // Checks if the projectile is out of the screen bounds
+        void setDamage( int newDamage){
+            damage = newDamage;
+        }
 };

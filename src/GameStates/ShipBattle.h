@@ -69,6 +69,6 @@ public:
 
     //Phase 1 methods:
     void checkHP();
-    void drawLivesIndicator() const;      
+    void drawLivesIndicator() const;     
 
 };

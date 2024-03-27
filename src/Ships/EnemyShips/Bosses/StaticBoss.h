@@ -15,4 +15,4 @@ class StaticBoss : public Boss {
         void draw() override;
         void shoot() override;
         
-};
+};      

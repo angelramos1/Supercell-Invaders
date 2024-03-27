@@ -32,7 +32,11 @@ void Player::draw() {
             ofTranslate(this->pos.x, this->pos.y);
             ofRotateDeg(shipOrientation);
 
-            this->shipSprite.draw(-20, -20, 45, 45);
+              if (!newShip.empty()) {
+        shipSprite.draw(-20, -20, 45, 45);
+    } else {
+        shipSprite.draw(-20, -20, 45, 45);
+    }
 
             ofPopMatrix();
                 

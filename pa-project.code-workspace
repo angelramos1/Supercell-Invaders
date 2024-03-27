@@ -14,6 +14,13 @@
 			"MSYSTEM": "MINGW32"
 		},
 		"terminal.integrated.automationShell.windows": null,
-		"terminal.explorerKind": "external"
+		"terminal.explorerKind": "external",
+		"files.associations": {
+			"array": "cpp",
+			"string_view": "cpp",
+			"ranges": "cpp",
+			"span": "cpp",
+			"regex": "cpp"
+		}
 	}
 }
