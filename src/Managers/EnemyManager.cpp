@@ -133,6 +133,20 @@ void EnemyManager::manageCollisions(Player* player) {
         }
     }
 
+    // New collision detection for player ship with enemies
+    for (auto& enemy : enemyList) {
+        if (player->hitBox.isColliding(*(enemy->getHitBox()))) {
+            player->health = max(player->health - 0.00001, 0.0);  
+        }
+    }
+
+    // New collision detection for player ship with bosses
+    for (auto& Boss : bossList) {
+        if (player->hitBox.isColliding(*(Boss->getHitBox()))) {
+            player->health = max(player->health - 0.00001, 0.0); 
+        }
+    }
+
     for (auto& Boss : bossList) {
         for (auto& bullet : Boss->getBullets()) {
             if (!bullet.bulletIsOutOfBounds() && player->hitBox.isHit(bullet)) {
