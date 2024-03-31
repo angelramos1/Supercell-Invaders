@@ -85,6 +85,29 @@ void Player::shoot() {
         }
 }
 
+void Player::activateShield() {
+    if(shieldCapacity >= 100.0f) { // Assuming 100 is full capacity
+        shieldActive = true;
+        shieldCapacity = 100.0f; // Start with full shield
+    }
+}
+
+void Player::updateShield(float deltaTime) {
+    if(shieldActive) {
+        shieldCapacity -= shieldDepletionRate * deltaTime;
+        if(shieldCapacity <= 0) {
+            shieldCapacity = 0;
+            shieldActive = false;
+        }
+    }
+}
+
+void Player::addShieldCapacity(float amount) {
+    if(!shieldActive) { // Can only add to capacity if shield isn't currently active
+        shieldCapacity = std::min(shieldCapacity + amount, 100.0f); // Max capacity is 100
+    }
+}
+
 void Player::setShotCooldown(float shotCooldown) { this->shotCooldown = shotCooldown; }
 
 void Player::removeMarkedBullets(){

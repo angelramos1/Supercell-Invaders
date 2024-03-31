@@ -31,6 +31,14 @@ void ShipBattle::update() {
         displayBossWarning = false;
     }
 
+    // Update shield status
+    player->updateShield(ofGetLastFrameTime());
+
+    // Activate shield when 'q' is pressed
+    if(ofGetKeyPressed('q')) {
+        player->activateShield();
+    }
+
     // Update enemies and player
     EnemyManager::updateEnemies(player);
     this->player->processPressedKeys();
@@ -89,6 +97,17 @@ void ShipBattle::draw() {
     ofSetBackgroundColor(ofColor::black);
     backgroundImage.draw(0, 0, ofGetWidth(), ofGetHeight());
     
+    // Draw shield if active
+    if(player->isShieldActive()) {
+        ofSetColor(0, 0, 255, 127); // Semi-transparent blue for the shield
+        ofDrawCircle(player->pos, 40); // Assuming a radius of 40 for the visual representation
+    }
+
+    // Draw shield capacity bar (similar to health bar)
+    // Adjust position and dimensions as needed
+    // ofSetColor(255);
+    // ofDrawRectangle(10, 100, player->getShieldCapacity() * 2, 20); // Assuming the bar is 200px wide at full capacity
+
     // Draw the score
     ofSetColor(ofColor::white);
     font.drawString("SCORE " + to_string(playerScore), ofGetWidth() / 2 - 50, 50);
@@ -112,6 +131,7 @@ void ShipBattle::draw() {
     // Draw UI elements
     healthBar(player->health, 100);
     killSpreeTimer(this->killspreeTimer, 150);
+    drawShieldBar(player->getShieldCapacity(), 100);
     
     //Draw a mini box for the bomb. Make sure to draw the bomb inside this box.
         ofNoFill();
@@ -193,6 +213,33 @@ void ShipBattle::killSpreeTimer(int currTimer, int maxTimer) {
     ofSetColor(ofColor::red);
     ofDrawRectangle(10, 90, currTimer, 10);
     ofSetColor(ofColor::white);
+}
+
+void ShipBattle::drawShieldBar(float currentShield, float maxShield) {
+    float barWidth = 200; 
+    float barHeight = 20; 
+    float posX = 10; 
+    float posY = 140; 
+
+    // Draw "FORCE SHIELD" label
+    ofSetColor(255); // White color for text
+    ofDrawBitmapString("FORCE SHIELD", posX, posY - 10); // Positioning text above the bar
+
+    // Draw the border of the shield bar
+    ofSetColor(100, 100, 100); // Gray color for the border
+    ofNoFill(); // Do not fill the rectangle, just draw the border
+    ofDrawRectangle(posX, posY, barWidth, barHeight);
+    ofFill(); // Re-enable filling for subsequent drawings
+
+    // Calculate the width of the current shield level
+    float shieldWidth = (currentShield / maxShield) * barWidth;
+
+    // Draw the current shield level
+    ofSetColor(0, 0, 255); // Blue for the shield level
+    ofDrawRectangle(posX + 1, posY + 1, shieldWidth - 2, barHeight - 2);
+
+    // Reset color for other drawings
+    ofSetColor(255, 255, 255);
 }
 
 // ====================================

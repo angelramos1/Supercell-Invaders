@@ -65,7 +65,8 @@ public:
     void killSpreeTimer(int currTimer, int maxTimer);       // Render the kill spree timer
     double killSpreeMode();                                 // Logic for kill spree mode
     double scoreMultiplier();                               // Calculate score multiplier based on game state
-    void removeMarkedPlayerBullets();                       // Remove bullets marked for deletion
+    void removeMarkedPlayerBullets();  
+    void drawShieldBar(float currentShield, float maxShield);                     
 
     //Phase 1 methods:
     void checkHP();

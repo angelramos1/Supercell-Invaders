@@ -30,6 +30,10 @@ class Player{
 
     string newShip;
 
+        float shieldCapacity = 0.0f;  // Current shield capacity
+        bool shieldActive = false;    // Is the shield currently active?
+        float shieldDepletionRate = 6.5f; // Rate at which shield depletes per second  
+
     public: 
 
        // === Public attributes ===
@@ -44,7 +48,13 @@ class Player{
     // === Constructors ===
         Player();                                      // Default Constructor
         Player(int Xposition, int Yposition);         // Parametrized Constructor for the playerShip
-    
+
+        void activateShield();
+        void updateShield(float deltaTime);
+        bool isShieldActive() const { return shieldActive; }
+        float getShieldCapacity() const { return shieldCapacity; }
+        void addShieldCapacity(float amount); // Method to increase shield capacity
+
         int getScore(); 
         void setScore(int score); 
   

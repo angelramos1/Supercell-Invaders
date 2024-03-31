@@ -86,6 +86,7 @@ void EnemyManager::manageCollisions(Player* player) {
 
                 enemy->takeDamage(bullet.getDamage());            // Enemy will take damage from the bullet
                 if (enemy->isDead()) {
+                    player->addShieldCapacity(10.0f);
                     SoundManager::playSong("shipDestroyed", false);
                     pointsPerUpdateCycle += enemy->getPoints();
                     resetKillSpreeTimer(150);
@@ -101,7 +102,7 @@ void EnemyManager::manageCollisions(Player* player) {
     for (auto& enemy : enemyList) {
 
         for (auto& bullet : enemy->getBullets()) {
-            if (!bullet.bulletIsOutOfBounds() && player->hitBox.isHit(bullet)) {
+            if (!bullet.bulletIsOutOfBounds() && player->hitBox.isHit(bullet) && !player->isShieldActive()) {
 
                 player->health = max(player->health - 10.0, 0.0);       // Player takes damage 
                 
@@ -120,6 +121,7 @@ void EnemyManager::manageCollisions(Player* player) {
                 Boss->takeDamage(bullet.getDamage());
                 
                 if (Boss->isDead()) {                   //If the boss has died from a bullet
+                    player->addShieldCapacity(10.0f);
                     SoundManager::stopSong(whichBoss);
                     SoundManager::playSong("battle", false);
                     bossHasDied();
@@ -135,21 +137,21 @@ void EnemyManager::manageCollisions(Player* player) {
 
     // New collision detection for player ship with enemies
     for (auto& enemy : enemyList) {
-        if (player->hitBox.isColliding(*(enemy->getHitBox()))) {
+        if (player->hitBox.isColliding(*(enemy->getHitBox())) && !player->isShieldActive()) {
             player->health = max(player->health - 0.00001, 0.0);  
         }
     }
 
     // New collision detection for player ship with bosses
     for (auto& Boss : bossList) {
-        if (player->hitBox.isColliding(*(Boss->getHitBox()))) {
+        if (player->hitBox.isColliding(*(Boss->getHitBox())) && !player->isShieldActive()) {
             player->health = max(player->health - 0.00001, 0.0); 
         }
     }
 
     for (auto& Boss : bossList) {
         for (auto& bullet : Boss->getBullets()) {
-            if (!bullet.bulletIsOutOfBounds() && player->hitBox.isHit(bullet)) {
+            if (!bullet.bulletIsOutOfBounds() && player->hitBox.isHit(bullet) && !player->isShieldActive()) {
 
                 player->health = max(player->health - 10.0, 0.0);       // Player takes damage 
                 bullet.markForDeletion(); // Mark bullet for deletion
