@@ -18,7 +18,7 @@ Don't forget that you must also fill out an evaluation form in Moodle to conside
 ## Grading
 
 Partner 1: 444-16-8964 Abimael Torres Torres abimael.torres@upr.edu
-Partner 2: (STUDENT NUMBER HERE) (STUDENT NAME HERE) (STUDENT EMAIL HERE)
+Partner 2: (841-21-5463) (Angel L. Ramos Rodríguez) (angel.ramos48@upr.edu)
 
 Any project that doesn't compile will receive a 0.
 
