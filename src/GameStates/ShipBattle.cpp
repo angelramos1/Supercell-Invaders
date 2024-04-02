@@ -12,7 +12,7 @@ ShipBattle::ShipBattle() {
     font.load("Fonts/Orbitron.ttf", 20, true);
     indicatorFont.load("Fonts/Orbitron.ttf", 10, true);
     backgroundImage.load("Menu_Images/BattleArea.jpg");
-
+    bombImage.load("CompressedImages/Bomb-min.png");
 }
 
 // ====================================
@@ -96,17 +96,27 @@ void ShipBattle::drawLivesIndicator() const {
 void ShipBattle::draw() {
     ofSetBackgroundColor(ofColor::black);
     backgroundImage.draw(0, 0, ofGetWidth(), ofGetHeight());
-    
+
+    indicatorFont.drawString("BOMB", ofGetWidth() - 150, 25);
+    if(player->hasBomb) {
+        float scaledWidth = 50; 
+        float scaledHeight = 50; 
+
+        // Calculate position to keep the icon aligned as desired
+        // Adjusting for the new size to keep it in the top right corner
+        float iconX = ofGetWidth() - 124 - scaledWidth / 2;
+        float iconY = 56 - scaledHeight / 2;
+
+        // Draw the scaled bomb icon
+        bombImage.draw(iconX, iconY, scaledWidth, scaledHeight);
+    }
+
     // Draw shield if active
     if(player->isShieldActive()) {
         ofSetColor(0, 0, 255, 127); // Semi-transparent blue for the shield
         ofDrawCircle(player->pos, 40); // Assuming a radius of 40 for the visual representation
     }
 
-    // Draw shield capacity bar (similar to health bar)
-    // Adjust position and dimensions as needed
-    // ofSetColor(255);
-    // ofDrawRectangle(10, 100, player->getShieldCapacity() * 2, 20); // Assuming the bar is 200px wide at full capacity
 
     // Draw the score
     ofSetColor(ofColor::white);
@@ -154,7 +164,12 @@ void ShipBattle::keyPressed(int key) {
         player->showHitbox = !player->showHitbox;
     }
     if(key == 'o')  player->health = 100;
-    if(key == 'p')  playerScore += 10000; 
+    if(key == 'p')  playerScore += 10000;
+
+    if(key == 'e' && player->hasBomb) {
+        player->useBomb();
+        EnemyManager::applyBombEffect(); // Apply bomb effect through EnemyManager
+    } 
 }
 
 void ShipBattle::keyReleased(int key) {

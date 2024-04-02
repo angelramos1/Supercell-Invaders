@@ -121,6 +121,7 @@ void EnemyManager::manageCollisions(Player* player) {
                 Boss->takeDamage(bullet.getDamage());
                 
                 if (Boss->isDead()) {                   //If the boss has died from a bullet
+                    player->hasBomb = true;
                     player->addShieldCapacity(10.0f);
                     SoundManager::stopSong(whichBoss);
                     SoundManager::playSong("battle", false);
@@ -157,7 +158,7 @@ void EnemyManager::manageCollisions(Player* player) {
                 bullet.markForDeletion(); // Mark bullet for deletion
             }
         }
-    }
+    } 
 
     // Clean up bullets marked for deletion in both player and enemies
     player->removeMarkedBullets();
@@ -168,7 +169,17 @@ void EnemyManager::manageCollisions(Player* player) {
 
 }
 
+void EnemyManager::applyBombEffect() {
+    for(auto& enemy : enemyList) {
+        enemy->takeDamage(10000000);
+    }
 
+    for(auto& boss : bossList) {
+        boss->takeDamage(60); 
+    }
+
+    removeEnemies(); 
+}
 
 void EnemyManager::updateEnemyBullets(EnemyShip* enemy){
     for (unsigned int i = 0; i < enemy->getBullets().size(); i++) {

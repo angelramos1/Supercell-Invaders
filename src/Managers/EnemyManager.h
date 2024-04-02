@@ -37,7 +37,8 @@ class EnemyManager {
         static void spawnEnemy(Player* player); // Handles the logic for spawning new enemies based on game state
         static void removeEnemies(); // Handles the removal of dead enemies from the game
         
-
+        
+        static void applyBombEffect();
 
 
     //Boss Management

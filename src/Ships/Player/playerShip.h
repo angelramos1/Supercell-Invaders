@@ -32,7 +32,7 @@ class Player{
 
         float shieldCapacity = 0.0f;  // Current shield capacity
         bool shieldActive = false;    // Is the shield currently active?
-        float shieldDepletionRate = 6.5f; // Rate at which shield depletes per second  
+        float shieldDepletionRate = 6.0f; // Rate at which shield depletes per second  
 
     public: 
 
@@ -54,6 +54,9 @@ class Player{
         bool isShieldActive() const { return shieldActive; }
         float getShieldCapacity() const { return shieldCapacity; }
         void addShieldCapacity(float amount); // Method to increase shield capacity
+
+        bool hasBomb = false; // Track bomb availability
+        void useBomb();
 
         int getScore(); 
         void setScore(int score); 

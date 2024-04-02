@@ -86,7 +86,7 @@ void Player::shoot() {
 }
 
 void Player::activateShield() {
-    if(shieldCapacity >= 100.0f) { // Assuming 100 is full capacity
+    if(shieldCapacity >= 100.0f) { 
         shieldActive = true;
         shieldCapacity = 100.0f; // Start with full shield
     }
@@ -105,6 +105,12 @@ void Player::updateShield(float deltaTime) {
 void Player::addShieldCapacity(float amount) {
     if(!shieldActive) { // Can only add to capacity if shield isn't currently active
         shieldCapacity = std::min(shieldCapacity + amount, 100.0f); // Max capacity is 100
+    }
+}
+
+void Player::useBomb() {
+    if(hasBomb) {
+        hasBomb = false; // Reset bomb availability after use
     }
 }
 
