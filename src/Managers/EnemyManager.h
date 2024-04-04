@@ -50,7 +50,7 @@ class EnemyManager {
         static bool ufoSeen;
         static bool ortSeen;
         static bool staticSeen;
-        static bool staticBossDead;
+       // static bool staticBossDead;
         
 
 
@@ -85,4 +85,6 @@ class EnemyManager {
         static int getKillSpreeTimer();
         static void resetKillSpreeTimer(int value);
         static int whichSpawnInterval(int playerScore); // Determines the interval for spawning enemies based on player score
+        //static bool isStaticBossDead(){return staticBossDead;}
+        static bool staticBossDead;
 };

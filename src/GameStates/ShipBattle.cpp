@@ -276,6 +276,7 @@ double ShipBattle::scoreMultiplier() {
 
 void ShipBattle::reset(){
     setFinished(false);
+    EnemyManager::staticBossDead = false;
     setNextState("");
 }
 

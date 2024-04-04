@@ -61,7 +61,7 @@ void EnemyManager::updateEnemies(Player* player){
     removeEnemies();
 
     //Changes the Ship Sprite when StaticBoss is dead and doubles the bullets damage(10 to 20) also changes color
-   if (EnemyManager::staticSeen && EnemyManager::staticBossDead) {
+   if (EnemyManager::staticSeen && EnemyManager::staticBossDead == true) {
         player->newShipUpdate("CompressedImages/secondShip.png");
 
         for(auto& bullet : player->bullets){
@@ -378,6 +378,7 @@ void EnemyManager::cleanUp() {
     ufoSeen = false;
     ortSeen = false;
     staticSeen = false;
+    staticBossDead = false;
     bossHasDied();
 }
 
