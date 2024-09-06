@@ -1,28 +1,62 @@
-# PA2: Supercell Invaders Game
-This repository is part of a Programming Assignment for the Advanced Programming Course. 
-The purpose of this project is to creatively help the student create practical programming skills by implementing changes to the base code that require strong understanding of the concepts discussed in class.
+<h1>Supercell Invaders</h1>
 
-Base code developed by: Armando Cruz, Jomard Concepcion & Christian Perez
+<h2>Description</h2>
+Collaborated on developing a 2D space shooter game using C++ and openFrameworks as part of a team project. Implemented key game features such as enemy AI, collision detection, and power-ups, ensuring smooth gameplay and user engagement. Designed and coded multiple gameplay phases, including unique enemy behaviors, a boss fight, and power-ups that enhance player abilities. Utilized Git and GitHub for version control, working collaboratively with a partner to manage project branches and maintain a clean codebase.
 
-## Setup
-1. Clone this project inside your OpenFrameworks enviorement folder "apps/myApps/" directory
-2. Run the command "make" in the terminal or the "Build" Task in VSCode.
-3. To run the project using the included debug configurations you must make sure to change the debugging program attribute for the corresponding configuration according to your OS. The executable will have the same name as this repository, and if on Windows, it 
-will end in ".exe"
+<br />
 
-## Submitting Assignment
-To submit this assignment, create a Release with the branch that holds all the changes you have added. If no Release is made, the last commit to the master branch will be graded.
 
-Don't forget that you must also fill out an evaluation form in Moodle to consider the project submitted.
+<h2>Languages and Tools</h2>
 
-## Grading
+- <b>C++</b> 
+- <b>VScode</b>
+- <b>openFrameworks</b>
 
-Partner 1: 444-16-8964 Abimael Torres Torres abimael.torres@upr.edu
-Partner 2: (841-21-5463) (Angel L. Ramos Rodríguez) (angel.ramos48@upr.edu)
+<h2>Environments Used </h2>
 
-Any project that doesn't compile will receive a 0.
+- <b>Windows 10</b> 
 
-If a partner has no commits in the repositories, they'll will receive a 0.
+<h2>Program walk-through:</h2>
 
-## Student Notes
-If you have any notes to add for your TA about the project specs or creative additions, you may do so in this section of the README:
+<p align="center">
+Start-Up Screen: <br/>
+<img src="https://imgur.com/LL6Zj3c.png" height="80%" width="80%" alt="Start-Up Screen"/>
+<br />
+<br />
+Gameplay:  <br/>
+<img src="https://imgur.com/noad3gP.png" height="80%" width="80%" alt="Gameplay"/>
+<br />
+<br />
+More Gameplay: <br/>
+<img src="https://imgur.com/4IN5grN.png" height="80%" width="80%" alt="More Gameplay"/>
+<br />
+<br />
+First Boss: <br/>
+<img src="https://imgur.com/kMTGxEz.png" height="80%" width="80%" alt="First Boss"/>
+<br />
+<br />
+Second Boss: <br/>
+<img src="https://imgur.com/3oNA5ZV.png" height="80%" width="80%" alt="Second Boss"/>
+<br />
+<br />
+Final Boss: <br/>
+<img src="https://imgur.com/OgCO8zj.png" height="80%" width="80%" alt="Final Boss"/>
+<br />
+<br />
+Game Over: <br/>
+<img src="https://imgur.com/t5GrGf7.png" height="80%" width="80%" alt="Game Over"/>
+<br />
+<br />
+
+
+</p>
+
+<!--
+ ```diff
+- text in red
++ text in green
+! text in orange
+# text in gray
+@@ text in purple (and bold)@@
+```
+--!>
